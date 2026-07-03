@@ -1,0 +1,108 @@
+[
+  {
+    "kind": "Event",
+    "apiVersion": "audit.k8s.io/v1",
+    "level": "RequestResponse",
+    "verb": "get",
+    "user": {
+      "username": "system:serviceaccount:secure-ops:monitoring"
+    },
+    "objectRef": {
+      "resource": "secrets",
+      "namespace": "kube-system"
+    },
+    "responseStatus": {
+      "code": 403
+    },
+    "annotations": {
+      "suspicious": "сервисный аккаунт пытается получить доступ к секретам kube-system"
+    }
+  },
+  {
+    "kind": "Event",
+    "apiVersion": "audit.k8s.io/v1",
+    "level": "RequestResponse",
+    "verb": "create",
+    "user": {
+      "username": "system:serviceaccount:secure-ops:monitoring"
+    },
+    "objectRef": {
+      "resource": "pods",
+      "namespace": "secure-ops",
+      "name": "privileged-pod"
+    },
+    "requestObject": {
+      "spec": {
+        "containers": [
+          {
+            "name": "pwn",
+            "image": "alpine",
+            "securityContext": {
+              "privileged": true
+            }
+          }
+        ]
+      }
+    },
+    "annotations": {
+      "suspicious": "создание привилегированного пода даёт доступ к хосту"
+    }
+  },
+  {
+    "kind": "Event",
+    "apiVersion": "audit.k8s.io/v1",
+    "level": "RequestResponse",
+    "verb": "create",
+    "user": {
+      "username": "system:serviceaccount:secure-ops:monitoring"
+    },
+    "objectRef": {
+      "resource": "pods",
+      "subresource": "exec",
+      "namespace": "kube-system",
+      "name": "coredns"
+    },
+    "annotations": {
+      "suspicious": "exec в чужой под в kube-system — разведка сетевой конфигурации"
+    }
+  },
+  {
+    "kind": "Event",
+    "apiVersion": "audit.k8s.io/v1",
+    "level": "RequestResponse",
+    "verb": "create",
+    "user": {
+      "username": "system:serviceaccount:secure-ops:monitoring"
+    },
+    "objectRef": {
+      "resource": "rolebindings",
+      "namespace": "secure-ops",
+      "name": "escalate-binding"
+    },
+    "requestObject": {
+      "roleRef": {
+        "kind": "ClusterRole",
+        "name": "cluster-admin"
+      }
+    },
+    "annotations": {
+      "suspicious": "создание rolebinding с cluster-admin — эскалация привилегий"
+    }
+  },
+  {
+    "kind": "Event",
+    "apiVersion": "audit.k8s.io/v1",
+    "level": "RequestResponse",
+    "verb": "delete",
+    "user": {
+      "username": "admin"
+    },
+    "objectRef": {
+      "resource": "audit-policy.yaml",
+      "namespace": "kube-system"
+    },
+    "annotations": {
+      "suspicious": "попытка удалить audit-policy чтобы скрыть следы атаки"
+    }
+  }
+]
