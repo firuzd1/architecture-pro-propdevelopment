@@ -1,0 +1,139 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="CqJp7THLunGbo6lPpn6i">
+    <mxGraphModel dx="2719" dy="1151" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="center" parent="1" style="ellipse;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;whiteSpace=wrap;" value="Безопасность данных" vertex="1">
+          <mxGeometry height="80" width="200" x="500" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="pub" parent="1" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;whiteSpace=wrap;" value="Публичные данные" vertex="1">
+          <mxGeometry height="60" width="160" x="100" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="e_pub" edge="1" parent="1" source="center" target="pub">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pub1" parent="1" style="rounded=1;whiteSpace=wrap;" value="Маркетинговые материалы&#xa;на сайте" vertex="1">
+          <mxGeometry height="50" width="160" x="-100" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e_pub1" edge="1" parent="1" source="pub" target="pub1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pub2" parent="1" style="rounded=1;whiteSpace=wrap;" value="Информация о жилых&#xa;комплексах и объектах" vertex="1">
+          <mxGeometry height="50" width="160" x="-100" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="e_pub2" edge="1" parent="1" source="pub" target="pub2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pub_risk" parent="1" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;whiteSpace=wrap;" value="Риск: обесценивание данных&#xa;Оценка: незначительный&#xa;Причина: публичные данные&#xa;не несут критической ценности" vertex="1">
+          <mxGeometry height="80" width="160" x="-280" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="e_pub_risk" edge="1" parent="1" source="pub1" target="pub_risk">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="int" parent="1" style="rounded=1;fillColor=#ffe6cc;strokeColor=#d6b656;fontStyle=1;whiteSpace=wrap;" value="Внутренние данные" vertex="1">
+          <mxGeometry height="60" width="160" x="100" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="e_int" edge="1" parent="1" source="center" target="int">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="int1" parent="1" style="rounded=1;whiteSpace=wrap;" value="Данные о сотрудниках&#xa;и командах" vertex="1">
+          <mxGeometry height="50" width="160" x="-100" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="e_int1" edge="1" parent="1" source="int" target="int1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="int2" parent="1" style="rounded=1;whiteSpace=wrap;" value="Данные BI и отчётности" vertex="1">
+          <mxGeometry height="50" width="160" x="-100" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="e_int2" edge="1" parent="1" source="int" target="int2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="int3" parent="1" style="rounded=1;whiteSpace=wrap;" value="Финансовые данные&#xa;компании (не клиентов)" vertex="1">
+          <mxGeometry height="50" width="160" x="-100" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="e_int3" edge="1" parent="1" source="int" target="int3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="int_risk" parent="1" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;whiteSpace=wrap;" value="Риск: утечка данных&#xa;Оценка: значительный&#xa;Причина: утечка даст&#xa;конкурентам доступ&#xa;к бизнес-процессам" vertex="1">
+          <mxGeometry height="90" width="160" x="-280" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="e_int_risk" edge="1" parent="1" source="int1" target="int_risk">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conf" parent="1" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;whiteSpace=wrap;" value="Конфиденциальные данные" vertex="1">
+          <mxGeometry height="60" width="180" x="900" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="e_conf" edge="1" parent="1" source="center" target="conf">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conf1" parent="1" style="rounded=1;whiteSpace=wrap;" value="Персональные данные&#xa;клиентов (ФИО, телефон,&#xa;email)" vertex="1">
+          <mxGeometry height="60" width="160" x="1100" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="e_conf1" edge="1" parent="1" source="conf" target="conf1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conf2" parent="1" style="rounded=1;whiteSpace=wrap;" value="Данные о сделках&#xa;по недвижимости" vertex="1">
+          <mxGeometry height="60" width="160" x="1100" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="e_conf2" edge="1" parent="1" source="conf" target="conf2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conf3" parent="1" style="rounded=1;whiteSpace=wrap;" value="Данные собственников&#xa;(ЖКУ, умный дом)" vertex="1">
+          <mxGeometry height="60" width="160" x="1100" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="e_conf3" edge="1" parent="1" source="conf" target="conf3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conf_risk1" parent="1" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;whiteSpace=wrap;" value="Риск: утечка данных&#xa;Оценка: критический&#xa;Причина: ПД защищены&#xa;законом 152-ФЗ, штрафы&#xa;и репутационный ущерб" vertex="1">
+          <mxGeometry height="90" width="170" x="1290" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e_conf_risk1" edge="1" parent="1" source="conf1" target="conf_risk1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conf_risk2" parent="1" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;whiteSpace=wrap;" value="Риск: искажение данных&#xa;Оценка: критический&#xa;Причина: в системе уже&#xa;зафиксированы случаи&#xa;показа чужих данных" vertex="1">
+          <mxGeometry height="90" width="170" x="1290" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="e_conf_risk2" edge="1" parent="1" source="conf2" target="conf_risk2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="secret" parent="1" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;whiteSpace=wrap;" value="Секретные данные" vertex="1">
+          <mxGeometry height="60" width="180" x="900" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="e_secret" edge="1" parent="1" source="center" target="secret">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sec1" parent="1" style="rounded=1;whiteSpace=wrap;" value="Биометрические данные&#xa;(домофон — лица)" vertex="1">
+          <mxGeometry height="60" width="160" x="1100" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sec1" edge="1" parent="1" source="secret" target="sec1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sec2" parent="1" style="rounded=1;whiteSpace=wrap;" value="Данные доступа&#xa;(ключи, токены API)" vertex="1">
+          <mxGeometry height="60" width="160" x="1100" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sec2" edge="1" parent="1" source="secret" target="sec2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sec3" parent="1" style="rounded=1;whiteSpace=wrap;" value="Данные паспортов&#xa;и документов клиентов" vertex="1">
+          <mxGeometry height="60" width="160" x="1100" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sec3" edge="1" parent="1" source="secret" target="sec3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sec_risk1" parent="1" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;whiteSpace=wrap;" value="Риск: утечка данных&#xa;Оценка: критический&#xa;Причина: биометрия&#xa;особая категория ПД&#xa;по 152-ФЗ, нельзя&#xa;изменить после утечки" vertex="1">
+          <mxGeometry height="100" width="170" x="1290" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sec_risk1" edge="1" parent="1" source="sec1" target="sec_risk1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sec_risk2" parent="1" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;whiteSpace=wrap;" value="Риск: потеря данных&#xa;Оценка: критический&#xa;Причина: утрата ключей&#xa;даёт полный доступ&#xa;к системам компании" vertex="1">
+          <mxGeometry height="90" width="170" x="1290" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sec_risk2" edge="1" parent="1" source="sec2" target="sec_risk2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
