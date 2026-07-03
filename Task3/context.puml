@@ -1,0 +1,26 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title Контекст - новые сервисы умного дома (домофон и шлагбаум)
+
+Person(owner, "Собственник", "жилец ЖК, использует мобильное приложение для управления доступом")
+
+System(mobile_app, "Мобильное приложение", "приложение для собственников, управление умным домом, ЖКУ")
+
+System(smart_intercom, "Умный домофон", "видеодомофон с распознаванием лиц, открытие по биометрии")
+
+System(smart_barrier, "Умный шлагбаум", "управление въездом, распознавание номеров автомобилей")
+
+System_Ext(partner_platform, "Платформа партнёра", "внешний поставщик сервисов умного дома")
+
+System_Ext(biometric_service, "Сервис биометрии", "распознавание лиц и номеров автомобилей")
+
+Rel(owner, mobile_app, "управляет доступом, настраивает разрешения", "HTTPS")
+Rel(mobile_app, smart_intercom, "открытие двери, просмотр камеры", "API")
+Rel(mobile_app, smart_barrier, "открытие шлагбаума, управление доступом", "API")
+Rel(smart_intercom, partner_platform, "передаёт данные о доступе", "API")
+Rel(smart_barrier, partner_platform, "передаёт данные о въезде", "API")
+Rel(partner_platform, biometric_service, "запрос на распознавание", "API")
+Rel(partner_platform, mobile_app, "уведомления о событиях", "push")
+
+@enduml
