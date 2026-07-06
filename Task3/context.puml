@@ -1,26 +1,64 @@
 @startuml
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-title Контекст - новые сервисы умного дома (домофон и шлагбаум)
+title Диаграмма контейнеров PropDevelopment (обновлённая — умный дом)
 
-Person(owner, "Собственник", "жилец ЖК, использует мобильное приложение для управления доступом")
+Person(owner, "Собственник")
+Person(client, "Клиент")
 
-System(mobile_app, "Мобильное приложение", "приложение для собственников, управление умным домом, ЖКУ")
+System_Boundary(sales, "Группа сервисов для продаж") {
+    Container(showcase, "Витрина продаж", "монолит", "подбор и бронирование недвижимости")
+    Container(tour_app, "client-tour-app", "", "онлайн-тур")
+    Container(mart_app, "client-mart-app", "", "онлайн-сделка")
+    Container(crm_app, "client-crm-app", "", "управление клиентскими данными")
+    Container(estate_app, "client-mart-estate-app", "", "управление данными о недвижимости")
+    ContainerDb(crm_db, "БД CRM", "", "")
+    ContainerDb(mart_db, "БД mart", "", "")
+    ContainerDb(estate_db, "БД estate", "", "")
+    ContainerDb(tour_db, "БД tour", "", "")
+}
 
-System(smart_intercom, "Умный домофон", "видеодомофон с распознаванием лиц, открытие по биометрии")
+System_Boundary(zhku, "Группа сервисов ЖКУ") {
+    Container(tenant_showcase, "Витрина ЖКУ", "", "")
+    Container(tenant_core, "tenant-core-app", "", "предоставление услуг собственникам")
+    Container(tenant_crm, "CRM собственников", "", "")
+    ContainerDb(tenant_db, "БД tenant", "", "")
+    ContainerDb(tenant_crm_db, "БД CRM собственников", "", "")
+    Container(mobile, "Мобильное приложение", "", "для собственников — ЖКУ, умный дом")
+    Container(api_gateway, "API Gateway", "", "единая точка входа для партнёрских интеграций — новое")
+}
 
-System(smart_barrier, "Умный шлагбаум", "управление въездом, распознавание номеров автомобилей")
+System_Boundary(smart_home, "Умный дом — новое") {
+    Container(intercom_svc, "Сервис домофона", "", "управление домофоном, биометрия лиц")
+    Container(barrier_svc, "Сервис шлагбаума", "", "управление шлагбаумом, распознавание номеров")
+}
 
-System_Ext(partner_platform, "Платформа партнёра", "внешний поставщик сервисов умного дома")
+System_Boundary(finance, "Финансы") {
+    Container(accountant, "accountant-service-1", "", "финансовый учёт")
+    ContainerDb(fin_db, "БД финансов", "", "")
+    Container(catalog, "Служба каталогов", "", "")
+}
 
-System_Ext(biometric_service, "Сервис биометрии", "распознавание лиц и номеров автомобилей")
+System_Boundary(data, "Дата") {
+    Container(warehouse, "Хранилище данных", "", "")
+    Container(bi, "BI и отчётность", "", "")
+}
 
-Rel(owner, mobile_app, "управляет доступом, настраивает разрешения", "HTTPS")
-Rel(mobile_app, smart_intercom, "открытие двери, просмотр камеры", "API")
-Rel(mobile_app, smart_barrier, "открытие шлагбаума, управление доступом", "API")
-Rel(smart_intercom, partner_platform, "передаёт данные о доступе", "API")
-Rel(smart_barrier, partner_platform, "передаёт данные о въезде", "API")
+System_Ext(partner_platform, "Платформа партнёра", "внешний поставщик умного дома")
+System_Ext(biometric_service, "Сервис биометрии", "распознавание лиц и номеров")
+System_Ext(gov, "Госорганы", "интеграция для онлайн-сделок")
+
+Rel(client, showcase, "подбор и бронирование", "HTTPS")
+Rel(owner, mobile, "управление услугами и умным домом", "HTTPS")
+Rel(mobile, api_gateway, "запросы к сервисам умного дома", "HTTPS")
+Rel(api_gateway, partner_platform, "проксирует запросы с авторизацией", "HTTPS/OAuth2")
+Rel(partner_platform, intercom_svc, "события домофона", "API")
+Rel(partner_platform, barrier_svc, "события шлагбаума", "API")
 Rel(partner_platform, biometric_service, "запрос на распознавание", "API")
-Rel(partner_platform, mobile_app, "уведомления о событиях", "push")
+Rel(intercom_svc, tenant_core, "данные о доступе жильцов", "API")
+Rel(barrier_svc, tenant_core, "данные о въезде авто", "API")
+Rel(tenant_core, tenant_db, "читает/пишет", "SQL")
+Rel(mart_app, gov, "онлайн-сделка", "API")
+Rel(accountant, fin_db, "читает/пишет", "SQL")
 
 @enduml
